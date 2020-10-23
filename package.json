@@ -9,7 +9,7 @@
     "server": "nodemon server",
     "client": "yarn start --prefix client",
     "dev": "concurrently \"yarn  server\" \"yarn  client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn  build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
   },
   "dependencies": {
     "cors": "^2.8.5",
