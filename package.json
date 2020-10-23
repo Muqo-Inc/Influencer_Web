@@ -1,0 +1,32 @@
+{
+  "name": "back_end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "yarn start --prefix client",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.13",
+    "path": "^0.12.7"
+  },"devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+.navbar {
+  height: 100px !important;
+}
+
+.navbar-brand-img {
+  width: 200px;
+  height: 150px;
+}
+/* mobile styles */
+@media (max-width: 600px) {
+  .navbar {
+    height: auto !important;
+  }
+  .navbar-brand-img {
+    width: 150px;
+    height: 75px;
+  }
+}

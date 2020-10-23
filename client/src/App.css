@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 55vh;
+  right: 100%;
+}
+.form-container-size {
+  max-height: 0px !important;
+}
+
+/* mobile styles */
+@media (max-width: 600px) {
+  .fill {
+    display: none;
+  }
+
+  .caption {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+  }
+}

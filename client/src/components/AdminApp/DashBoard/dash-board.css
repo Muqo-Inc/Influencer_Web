@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.home,
+.reports,
+.influencers-list {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+/* 
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.home,
+.reports,
+.influencers-list {
+  width: calc(100% - 250px);
+  padding: 40px;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.influencers-list.active {
+  width: 100%;
+} */
+
+.sidebar-open {
+  height: 100%;
+  width: 2rem;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+.sidebar-open-content {
+  transition: margin-left 0.5s;
+  padding: 16px;
+  margin-left: 250px;
+  /* width: calc(100% -250px); */
+}
+.sidebar-close {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+.sidebar-close-content {
+  transition: margin-left 0.5s;
+  padding: 16px;
+  margin-left: 0;
+}
