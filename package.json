@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
     "server": "nodemon server",
-    "client": "yarn start --prefix client",
-    "dev": "concurrently \"yarn  run server\" \"yarn run  client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && npm run build --prefix client"
+    "client": "yarn  --cwd client start",
+    "dev": "concurrently \"yarn  run server\" \"yarn run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn  --cwd client install && yarn  --cwd client build"
   },
   "dependencies": {
     "cors": "^2.8.5",
