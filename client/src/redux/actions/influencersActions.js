@@ -44,14 +44,19 @@ export const prevStep = () => (dispatch) =>
 
 // Add post
 export const submitInfluencerForm = (formData) => async (dispatch) => {
+  console.log(`/api/influencer`);
+
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
   try {
-    const res = await axios.post(`${baseUrl}/api/influencer`, formData, config);
-
+    const res = await axios.post(
+      `${baseUrl || null}/api/influencer`,
+      formData,
+      config
+    );
     dispatch({
       type: INFLUENCER_FORM_SUBMIT_SUCCESS,
       payload: res.data,
@@ -68,7 +73,7 @@ export const submitInfluencerForm = (formData) => async (dispatch) => {
 // Get influencers
 export const getInfluencers = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${baseUrl}/api/influencers`);
+    const res = await axios.get(`/api/influencers`);
 
     dispatch({
       type: GET_INFLUENCERS,
@@ -82,7 +87,7 @@ export const getInfluencers = () => async (dispatch) => {
 // Get influencers
 export const getAinfluencers = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`${baseUrl}/api/influencers/${id}`);
+    const res = await axios.get(`/api/influencers/${id}`);
 
     dispatch({
       type: GET_INFLUENCER,
@@ -109,7 +114,7 @@ export const setRemoveActiveSidebar = () => (dispatch) => {
 // Load Admin
 export const loadAdmin = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${baseUrl}/api/admin/auth`);
+    const res = await axios.get(`/api/admin/auth`);
 
     dispatch({
       type: ADMIN_LOADED,
@@ -133,7 +138,7 @@ export const login = (username, password) => async (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   try {
-    const res = await axios.post(`${baseUrl}/api/admin/auth`, body, config);
+    const res = await axios.post(`/api/admin/auth`, body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
