@@ -17,6 +17,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { Formik } from "formik";
 
 const FormMain = ({
   submitInfluencerForm,
@@ -118,72 +119,104 @@ const FormMain = ({
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
-        {(() => {
-          switch (formStep) {
-            case 1:
-              return (
-                <StepOne inputChange={handleOnChange} values={influencer} />
-              );
-            case 2:
-              return (
-                <StepTwo
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 3:
-              return (
-                <StepThree
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 4:
-              return (
-                <StepFour
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 5:
-              return (
-                <StepFive
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 6:
-              return (
-                <StepSix
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 7:
-              return (
-                <StepSeven
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-
-            default:
-              return null;
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validate={(values) => {
+          const errors = {};
+          if (!values.email) {
+            errors.email = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = "Invalid email address";
           }
-        })()}
-      </Form>
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          /* and other goodies */
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            {(() => {
+              switch (formStep) {
+                case 1:
+                  return (
+                    <StepOne inputChange={handleOnChange} values={influencer} />
+                  );
+                case 2:
+                  return (
+                    <StepTwo
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      inputChange={handleOnChange}
+                      values={influencer}
+                    />
+                  );
+                case 3:
+                  return (
+                    <StepThree
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      inputChange={handleOnChange}
+                      values={influencer}
+                    />
+                  );
+                case 4:
+                  return (
+                    <StepFour
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      inputChange={handleOnChange}
+                      values={influencer}
+                    />
+                  );
+                case 5:
+                  return (
+                    <StepFive
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      inputChange={handleOnChange}
+                      values={influencer}
+                    />
+                  );
+                case 6:
+                  return (
+                    <StepSix
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      inputChange={handleOnChange}
+                      values={influencer}
+                    />
+                  );
+                case 7:
+                  return (
+                    <StepSeven
+                      prevStep={prevStep}
+                      inputChange={handleOnChange}
+                      values={influencer}
+                    />
+                  );
+
+                default:
+                  return null;
+              }
+            })()}
+          </Form>
+        )}
+      </Formik>
 
       {/* modal component */}
 
