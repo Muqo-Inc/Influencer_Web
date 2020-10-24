@@ -71,7 +71,12 @@ export const GetStartedPage = ({ history, location }) => {
                   })
                 }
               >
-                <Image ref={target} src={UsaCanadaImg} alt="my image" />
+                <Image
+                  ref={target}
+                  src={UsaCanadaImg}
+                  alt="my image"
+                  className="get-started-page-img-class"
+                />
                 North America
               </Button>
             </OverlayTrigger>
@@ -107,7 +112,7 @@ export const GetStartedPage = ({ history, location }) => {
                 <Image
                   src={InternationalImg}
                   alt="my image"
-                  style={{ width: "200px", height: "100px" }}
+                  className="get-started-page-img-class"
                   ref={target}
                 />
                 International

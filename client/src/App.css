@@ -17,6 +17,10 @@
 .form-container-size {
   max-height: 0px !important;
 }
+.get-started-page-img-class {
+  width: 150px;
+  height: 100px;
+}
 
 /* mobile styles */
 @media (max-width: 600px) {
