@@ -7,7 +7,6 @@ import "./App.css";
 import { NavBar } from "./components/layouts/NavBar/NavBar";
 import { Routes } from "./components/Routes/Routes";
 import { store } from "./redux/store";
-import { Footer } from "./components/layouts/Footer/Footer";
 import LandingPage from "./components/layouts/LandingPage/LandingPage";
 
 import AdminApp from "./components/AdminApp/AdminApp";
@@ -51,7 +50,7 @@ function App() {
               <Route exact path="/" component={LandingPage} />
               <Route component={Routes} />
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
           </Fragment>
         ) : (
           <AdminApp />
