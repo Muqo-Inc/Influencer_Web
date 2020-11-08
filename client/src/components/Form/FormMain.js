@@ -119,72 +119,78 @@ const FormMain = ({
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
-        {(() => {
-          switch (formStep) {
-            case 1:
-              return (
-                <StepOne inputChange={handleOnChange} values={influencer} />
-              );
-            case 2:
-              return (
-                <StepTwo
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 3:
-              return (
-                <StepThree
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 4:
-              return (
-                <StepFour
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 5:
-              return (
-                <StepFive
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 6:
-              return (
-                <StepSix
-                  nextStep={nextStep}
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
-            case 7:
-              return (
-                <StepSeven
-                  prevStep={prevStep}
-                  inputChange={handleOnChange}
-                  values={influencer}
-                />
-              );
+      {(() => {
+        switch (formStep) {
+          case 1:
+            return (
+              <StepOne
+                nextStep={nextStep}
+                inputChange={handleOnChange}
+                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
+              />
+            );
+          case 2:
+            return (
+              <StepTwo
+                nextStep={nextStep}
+                prevStep={prevStep}
+                inputChange={handleOnChange}
+                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
+              />
+            );
+          case 3:
+            return (
+              <StepThree
+                nextStep={nextStep}
+                prevStep={prevStep}
+                inputChange={handleOnChange}
+                values={influencer}
+              />
+            );
+          case 4:
+            return (
+              <StepFour
+                nextStep={nextStep}
+                prevStep={prevStep}
+                inputChange={handleOnChange}
+                values={influencer}
+              />
+            );
+          case 5:
+            return (
+              <StepFive
+                nextStep={nextStep}
+                prevStep={prevStep}
+                inputChange={handleOnChange}
+                values={influencer}
+              />
+            );
+          case 6:
+            return (
+              <StepSix
+                nextStep={nextStep}
+                prevStep={prevStep}
+                inputChange={handleOnChange}
+                values={influencer}
+              />
+            );
+          case 7:
+            return (
+              <StepSeven
+                prevStep={prevStep}
+                inputChange={handleOnChange}
+                values={influencer}
+              />
+            );
 
-            default:
-              return null;
-          }
-        })()}
-      </Form>
+          default:
+            return null;
+        }
+      })()}
 
       {/* modal component */}
 
