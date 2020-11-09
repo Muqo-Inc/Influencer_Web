@@ -125,8 +125,6 @@ const FormMain = ({
             return (
               <StepOne
                 nextStep={nextStep}
-                inputChange={handleOnChange}
-                values={influencer}
                 formData={influencer}
                 setFormData={setInfluencer}
               />
@@ -136,8 +134,6 @@ const FormMain = ({
               <StepTwo
                 nextStep={nextStep}
                 prevStep={prevStep}
-                inputChange={handleOnChange}
-                values={influencer}
                 formData={influencer}
                 setFormData={setInfluencer}
               />
@@ -147,8 +143,8 @@ const FormMain = ({
               <StepThree
                 nextStep={nextStep}
                 prevStep={prevStep}
-                inputChange={handleOnChange}
-                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
               />
             );
           case 4:
@@ -156,8 +152,8 @@ const FormMain = ({
               <StepFour
                 nextStep={nextStep}
                 prevStep={prevStep}
-                inputChange={handleOnChange}
-                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
               />
             );
           case 5:
