@@ -7,7 +7,6 @@ import {
   REMOVE_ALERT,
   INFLUENCER_FORM_STEP_INCREMENT,
   INFLUENCER_FORM_STEP_DECREMENT,
-  INFLUENCER_FORM_ONCHANGE,
   INFLUENCER_FORM_SUBMIT_SUCCESS,
   INFLUENCER_FORM_SUBMIT_FAIL,
   GET_INFLUENCERS,
@@ -20,6 +19,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  GET_INFLUENCER_ERROR,
 } from "./actionsTypes";
 
 export const nextStep = () => (dispatch) =>
@@ -89,6 +89,29 @@ export const getAinfluencers = (id) => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+// Get influencers
+export const verifyExistingEmail = (email) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      baseUrl ? ` ${baseUrl}/api/emails` : `/api/emails`
+    );
+
+    dispatch({
+      type: GET_INFLUENCER,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) =>
+        dispatch({
+          type: GET_INFLUENCER_ERROR,
+          payload: error.msg,
+        })
+      );
+    }
   }
 };
 

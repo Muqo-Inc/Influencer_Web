@@ -32,14 +32,7 @@ const StepTwo = ({
         }}
         initialValues={formData}
       >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-
-          errors,
-        }) => (
+        {({ handleSubmit, handleChange, values, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Row>

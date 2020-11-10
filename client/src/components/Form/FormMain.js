@@ -50,7 +50,7 @@ const FormMain = ({
     instagramFollowers: "",
     youtubeName: "",
     youtubeFollowers: "",
-    tiktoName: "",
+    tiktokName: "",
     tiktokFollowers: "",
 
     specialTalents: "",
@@ -61,7 +61,6 @@ const FormMain = ({
   };
   const [influencer, setInfluencer] = useState(initialFormState);
   const [showModal, setShowModal] = useState(influencerFormSubmissionModalOpen);
-  console.log(influencer);
   // const handleOnChange = () => (e) => {
   //   if (e.target.type === "checkbox") {
   //     if (e.target.name === "favMusicGenre") {
@@ -105,6 +104,7 @@ const FormMain = ({
   // };
 
   const handleSubmit = () => {
+    console.log("in submit funcion", influencer);
     submitInfluencerForm(influencer);
     handleModalOpen();
   };

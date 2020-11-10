@@ -1,12 +1,22 @@
 import React from "react";
 import { Form, Button, Col } from "react-bootstrap";
-import { nextStep } from "../../redux/actions/influencersActions";
+import {
+  nextStep,
+  verifyExistingEmail,
+} from "../../redux/actions/influencersActions";
 import * as yup from "yup";
 import { connect } from "react-redux";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import { withRouter } from "react-router-dom";
 
-const StepOne = ({ nextStep, formData, setFormData, location }) => {
+const StepOne = ({
+  nextStep,
+  formData,
+  setFormData,
+  location,
+  verifyExistingEmail,
+  err,
+}) => {
   const schema = yup.object({
     firstName: yup.string().required("First Name is Required"),
     lastName: yup.string().required("Last Name is Required"),
@@ -21,6 +31,20 @@ const StepOne = ({ nextStep, formData, setFormData, location }) => {
       zip: yup.string().required("Zip is Required"),
     }),
   });
+  function validateEmail(value) {
+    let error;
+    verifyExistingEmail(value);
+
+    if (!value) {
+      error = "Required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      error = "Invalid email address";
+    } else if (err) {
+      error = err;
+    }
+
+    return error;
+  }
 
   return (
     <Formik
@@ -35,13 +59,7 @@ const StepOne = ({ nextStep, formData, setFormData, location }) => {
       }}
       initialValues={formData}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        values,
-
-        errors,
-      }) => (
+      {({ handleSubmit, handleChange, values, errors }) => (
         <Form noValidate onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Row>
@@ -78,13 +96,16 @@ const StepOne = ({ nextStep, formData, setFormData, location }) => {
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
+                  as={Field}
                   type="email"
                   placeholder="Enter email"
                   name={"email"}
                   value={values.email}
                   onChange={handleChange}
-                  isInvalid={!!errors.email}
+                  isInvalid={!!errors.email && !!err}
+                  validate={validateEmail}
                 />{" "}
+                {console.log(!!errors.email && !!err, !!errors.email, !!err)}
                 <Form.Control.Feedback type="invalid">
                   {errors.email}
                 </Form.Control.Feedback>
@@ -211,6 +232,11 @@ const StepOne = ({ nextStep, formData, setFormData, location }) => {
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => ({
+  err: state.influencer.error,
+});
+
+export default connect(mapStateToProps, {
   nextStep,
+  verifyExistingEmail,
 })(withRouter(StepOne));

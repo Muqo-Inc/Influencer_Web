@@ -16,6 +16,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  GET_INFLUENCER_ERROR,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -23,7 +24,7 @@ const initialState = {
   influencer: null,
   formStep: 1,
   loading: true,
-  error: {},
+  error: null,
   sideBar: true,
   isAuthenticated: null,
   user: null,
@@ -45,6 +46,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         influencer: payload,
+        loading: false,
+      };
+    case GET_INFLUENCER_ERROR:
+      return {
+        ...state,
+        error: payload,
         loading: false,
       };
     case INFLUENCER_FORM_STEP_INCREMENT:

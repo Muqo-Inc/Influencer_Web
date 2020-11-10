@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 
 import { prevStep } from "../../redux/actions/influencersActions";
@@ -15,25 +15,31 @@ const StepSeven = ({ prevStep, formData, setFormData, handleFormSubmit }) => {
     canPromotePosts: yup.bool().required("This field  is Required"),
     shareRefCode: yup.bool().required("This field  is Required"),
   });
+  console.log(
+    "in sevem",
+    !!formData.canPromotePosts,
+    formData.canPromotePosts === null
+  );
+
+  // useEffect(() => {},[])
   return (
     <div>
       <Formik
         validationSchema={schema}
-        onSubmit={(values) => {
+        onSubmit={(values, actions) => {
           setFormData(values);
-          direction === "back" ? prevStep() : handleFormSubmit();
+          if (direction === "back") {
+            prevStep();
+          }
+          handleFormSubmit();
         }}
         initialValues={formData}
       >
-        {({
-          handleSubmit,
-          handleChange,
-
-          errors,
-        }) => (
+        {({ handleSubmit, handleChange, values, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Row>
+                {console.log(errors, values)}
                 <Form.Group as={Col} controlId="formGridUsedApp">
                   <Form.Label>
                     Once accepted as a Verified influencer partner do you give

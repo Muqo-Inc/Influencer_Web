@@ -119,4 +119,19 @@ router.get("/admin/auth", auth, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+router.get("/emails", async (req, res) => {
+  const { email } = req.body;
+  try {
+    let influencer = await Influencer.findOne({ email });
+
+    if (influencer) {
+      return res.status(400).json({ errors: [{ msg: "User already exists" }] });
+    }
+  } catch (err) {
+    console.log(err.message);
+
+    res.status(500).send("Server error");
+  }
+});
 module.exports = router;

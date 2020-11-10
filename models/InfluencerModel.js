@@ -18,11 +18,7 @@ const InfluencerSchema = new Schema({
     type: String,
     trim: true,
     lowercase: true,
-
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please fill a valid email address",
-    ],
+    unique: true,
   },
   age: {
     type: Number,
@@ -84,8 +80,8 @@ const InfluencerSchema = new Schema({
   },
 
   specialTalents: { type: String },
-  canPromotePosts: { type: Boolean, default: false },
-  shareRefCode: { type: Boolean, default: false },
+  canPromotePosts: { type: String },
+  shareRefCode: { type: String },
 
   date: {
     type: Date,
