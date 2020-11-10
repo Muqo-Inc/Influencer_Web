@@ -17,6 +17,7 @@ import {
   LOGOUT,
   CLEAR_PROFILE,
   GET_INFLUENCER_ERROR,
+  CLEAR_ERROR,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -47,11 +48,18 @@ export default function (state = initialState, action) {
         ...state,
         influencer: payload,
         loading: false,
+        error: null,
       };
     case GET_INFLUENCER_ERROR:
       return {
         ...state,
         error: payload,
+        loading: false,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
         loading: false,
       };
     case INFLUENCER_FORM_STEP_INCREMENT:

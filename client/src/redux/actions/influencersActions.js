@@ -93,15 +93,13 @@ export const getAinfluencers = (id) => async (dispatch) => {
 };
 // Get influencers
 export const verifyExistingEmail = (email) => async (dispatch) => {
+  dispatch({
+    type: GET_INFLUENCER,
+  });
   try {
     const res = await axios.get(
-      baseUrl ? ` ${baseUrl}/api/emails` : `/api/emails`
+      baseUrl ? ` ${baseUrl}/api/emails?email=${email}` : `/api/emails?${email}`
     );
-
-    dispatch({
-      type: GET_INFLUENCER,
-      payload: res.data,
-    });
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {

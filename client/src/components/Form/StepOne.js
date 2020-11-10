@@ -32,6 +32,7 @@ const StepOne = ({
     }),
   });
   function validateEmail(value) {
+    console.log(value);
     let error;
     verifyExistingEmail(value);
 

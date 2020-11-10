@@ -121,13 +121,14 @@ router.get("/admin/auth", auth, async (req, res) => {
 });
 
 router.get("/emails", async (req, res) => {
-  const { email } = req.body;
+  const { email } = req.query;
   try {
     let influencer = await Influencer.findOne({ email });
-
+    console.log("influe", influencer);
     if (influencer) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
+    return res.status(200);
   } catch (err) {
     console.log(err.message);
 
