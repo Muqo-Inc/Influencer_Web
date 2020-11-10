@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 const StepThree = ({
   nextStep,
   prevStep,
-  inputChange,
+
   formData,
   setFormData,
 }) => {
@@ -42,7 +42,6 @@ const StepThree = ({
           errors,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            {console.log(values, errors)}
             <Form.Group>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridUsedApp">
@@ -211,6 +210,7 @@ const StepThree = ({
                 <Button
                   variant="danger"
                   type="submit"
+                  name="back_button"
                   onClick={() => setDirection("back")}
                 >
                   Back

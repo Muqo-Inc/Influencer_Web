@@ -4,13 +4,13 @@ import StepFour from "./StepFour";
 import StepOne from "./StepOne";
 import StepSix from "./StepSix";
 import StepSeven from "./StepSeven";
-import { Form } from "react-bootstrap";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
 import {
   submitInfluencerForm,
   nextStep,
   prevStep,
+  closeFormSubmissionSuccessModal,
 } from "../../redux/actions/influencersActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
@@ -24,6 +24,8 @@ const FormMain = ({
   nextStep,
   prevStep,
   formStep,
+  closeFormSubmissionSuccessModal,
+  influencerFormSubmissionModalOpen,
   history,
   location,
 }) => {
@@ -58,63 +60,62 @@ const FormMain = ({
     influencerType: "",
   };
   const [influencer, setInfluencer] = useState(initialFormState);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(influencerFormSubmissionModalOpen);
+  console.log(influencer);
+  // const handleOnChange = () => (e) => {
+  //   if (e.target.type === "checkbox") {
+  //     if (e.target.name === "favMusicGenre") {
+  //       if (influencer.favMusicGenre.includes(e.target.value)) {
+  //         influencer.favMusicGenre = influencer.favMusicGenre.filter(
+  //           (x) => x !== e.target.value
+  //         );
+  //       } else {
+  //         influencer.favMusicGenre = [
+  //           ...influencer.favMusicGenre,
+  //           e.target.value,
+  //         ];
+  //       }
+  //     } else if (e.target.name === "favSocialMedia") {
+  //       if (influencer.favSocialMedia.includes(e.target.value)) {
+  //         influencer.favSocialMedia = influencer.favSocialMedia.filter(
+  //           (x) => x !== e.target.value
+  //         );
+  //       } else {
+  //         influencer.favSocialMedia = [
+  //           ...influencer.favSocialMedia,
+  //           e.target.value,
+  //         ];
+  //       }
+  //     }
+  //   }
 
-  const handleOnChange = () => (e) => {
-    if (e.target.type === "checkbox") {
-      if (e.target.name === "favMusicGenre") {
-        if (influencer.favMusicGenre.includes(e.target.value)) {
-          influencer.favMusicGenre = influencer.favMusicGenre.filter(
-            (x) => x !== e.target.value
-          );
-        } else {
-          influencer.favMusicGenre = [
-            ...influencer.favMusicGenre,
-            e.target.value,
-          ];
-        }
-      } else if (e.target.name === "favSocialMedia") {
-        if (influencer.favSocialMedia.includes(e.target.value)) {
-          influencer.favSocialMedia = influencer.favSocialMedia.filter(
-            (x) => x !== e.target.value
-          );
-        } else {
-          influencer.favSocialMedia = [
-            ...influencer.favSocialMedia,
-            e.target.value,
-          ];
-        }
-      }
-    }
+  //   if (e.target.id === "address") {
+  //     influencer.address[e.target.name] = e.target.value;
+  //   }
+  //   console.log(influencer);
+  //   setInfluencer({
+  //     ...influencer,
+  //     [e.target.name]: e.target.value,
+  //     favMusicGenre: influencer.favMusicGenre,
+  //     favSocialMedia: influencer.favSocialMedia,
+  //     address: influencer.address,
+  //     region: location.state.subType,
+  //     influencerType: location.state.mainType,
+  //   });
+  // };
 
-    if (e.target.id === "address") {
-      influencer.address[e.target.name] = e.target.value;
-    }
-    console.log(influencer);
-    setInfluencer({
-      ...influencer,
-      [e.target.name]: e.target.value,
-      favMusicGenre: influencer.favMusicGenre,
-      favSocialMedia: influencer.favSocialMedia,
-      address: influencer.address,
-      region: location.state.subType,
-      influencerType: location.state.mainType,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     submitInfluencerForm(influencer);
     handleModalOpen();
   };
 
   const handleModalClose = () => {
-    setShowModal(false);
+    closeFormSubmissionSuccessModal();
+    setShowModal(influencerFormSubmissionModalOpen);
     history.push(`/`);
   };
   const handleModalOpen = () => {
-    setShowModal(true);
+    setShowModal(influencerFormSubmissionModalOpen);
   };
 
   return (
@@ -161,8 +162,8 @@ const FormMain = ({
               <StepFive
                 nextStep={nextStep}
                 prevStep={prevStep}
-                inputChange={handleOnChange}
-                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
               />
             );
           case 6:
@@ -170,16 +171,18 @@ const FormMain = ({
               <StepSix
                 nextStep={nextStep}
                 prevStep={prevStep}
-                inputChange={handleOnChange}
-                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
               />
             );
           case 7:
             return (
               <StepSeven
+                nextStep={nextStep}
                 prevStep={prevStep}
-                inputChange={handleOnChange}
-                values={influencer}
+                formData={influencer}
+                setFormData={setInfluencer}
+                handleFormSubmit={handleSubmit}
               />
             );
 
@@ -220,6 +223,8 @@ FormMain.propTypes = {
 
 const mapStateToProps = (state) => ({
   formStep: state.influencer.formStep,
+  influencerFormSubmissionModalOpen:
+    state.influencer.influencerFormSubmissionModalOpen,
 });
 export default connect(mapStateToProps, {
   submitInfluencerForm,

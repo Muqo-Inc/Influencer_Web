@@ -15,6 +15,7 @@ const InfluencersListPage = ({
     getInfluencers();
   }, [getInfluencers]);
 
+  console.log(influencers);
   const handleInfluencerSelect = (id) => {
     history.push(`/admin/influencer/${id}`);
   };

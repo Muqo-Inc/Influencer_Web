@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import { nextStep, prevStep } from "../../redux/actions/influencersActions";
 import * as yup from "yup";
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 
 import { connect } from "react-redux";
 
 const StepTwo = ({
   nextStep,
   prevStep,
-  inputChange,
-  values,
+
   formData,
   setFormData,
 }) => {
@@ -38,13 +37,10 @@ const StepTwo = ({
           handleChange,
           handleBlur,
           values,
-          touched,
-          isValid,
-          isInvalid,
+
           errors,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            {console.log(values, errors)}
             <Form.Group>
               <Form.Row>
                 <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
@@ -111,7 +107,6 @@ const StepTwo = ({
                     onChange={handleChange}
                     isInvalid={!!errors.workedPromotional}
                     // feedback={errors.workedPromotional}
-                    id="validationFormik0"
                   />
                   <Form.Check
                     custom
@@ -124,7 +119,6 @@ const StepTwo = ({
                     // checked={values.workedPromotional === false}
                     onChange={handleChange}
                     isInvalid={!!errors.workedPromotional}
-                    id="validationFormik1"
                     // feedback={errors.workedPromotional}
                   />
                 </Form.Group>
@@ -168,6 +162,7 @@ const StepTwo = ({
                 <Button
                   variant="danger"
                   type="submit"
+                  name="back_button"
                   onClick={() => setDirection("back")}
                 >
                   Back
@@ -177,6 +172,7 @@ const StepTwo = ({
                 <Button
                   variant="primary"
                   type="submit"
+                  name="continue_button"
                   onClick={() => setDirection("forward")}
                 >
                   Continue

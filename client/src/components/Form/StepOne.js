@@ -3,8 +3,10 @@ import { Form, Button, Col } from "react-bootstrap";
 import { nextStep } from "../../redux/actions/influencersActions";
 import * as yup from "yup";
 import { connect } from "react-redux";
-import { Formik, Field } from "formik";
-const StepOne = ({ nextStep, inputChange, formData, setFormData, values }) => {
+import { Formik } from "formik";
+import { withRouter } from "react-router-dom";
+
+const StepOne = ({ nextStep, formData, setFormData, location }) => {
   const schema = yup.object({
     firstName: yup.string().required("First Name is Required"),
     lastName: yup.string().required("Last Name is Required"),
@@ -24,7 +26,11 @@ const StepOne = ({ nextStep, inputChange, formData, setFormData, values }) => {
     <Formik
       validationSchema={schema}
       onSubmit={(values) => {
-        setFormData(values);
+        setFormData({
+          ...values,
+          region: location.state.subType,
+          influencerType: location.state.mainType,
+        });
         nextStep();
       }}
       initialValues={formData}
@@ -32,15 +38,11 @@ const StepOne = ({ nextStep, inputChange, formData, setFormData, values }) => {
       {({
         handleSubmit,
         handleChange,
-        handleBlur,
         values,
-        touched,
-        isValid,
-        isInvalid,
+
         errors,
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
-          {console.log(values, !!errors.address)}
           <Form.Group>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridFirstName">
@@ -211,4 +213,4 @@ const StepOne = ({ nextStep, inputChange, formData, setFormData, values }) => {
 
 export default connect(null, {
   nextStep,
-})(StepOne);
+})(withRouter(StepOne));

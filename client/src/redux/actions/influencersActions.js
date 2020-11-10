@@ -2,6 +2,7 @@ import { baseUrl } from "../../config/env";
 import axios from "axios";
 
 import {
+  INFLUENCER_FORM_SUBMISSION_MODAL_CLOSE,
   SET_ALERT,
   REMOVE_ALERT,
   INFLUENCER_FORM_STEP_INCREMENT,
@@ -21,15 +22,6 @@ import {
   CLEAR_PROFILE,
 } from "./actionsTypes";
 
-//influencer form back and forth
-// let nextTodoId = 1;
-// export const nextStep = (content) => ({
-//   type: INFLUENCER_FORM_STEP_INCREMENT,
-//   payload: {
-//     step: ++nextTodoId,
-//   },
-// });
-
 export const nextStep = () => (dispatch) =>
   dispatch({
     type: INFLUENCER_FORM_STEP_INCREMENT,
@@ -44,8 +36,6 @@ export const prevStep = () => (dispatch) =>
 
 // Add post
 export const submitInfluencerForm = (formData) => async (dispatch) => {
-  console.log(`/api/influencer`);
-
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +43,7 @@ export const submitInfluencerForm = (formData) => async (dispatch) => {
   };
   try {
     const res = await axios.post(
-      `${baseUrl || null}/api/influencer`,
+      baseUrl ? ` ${baseUrl}/api/influencer` : `/api/influencer`,
       formData,
       config
     );
@@ -73,7 +63,9 @@ export const submitInfluencerForm = (formData) => async (dispatch) => {
 // Get influencers
 export const getInfluencers = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/influencers`);
+    const res = await axios.get(
+      baseUrl ? ` ${baseUrl}/api/influencers` : `/api/influencers`
+    );
 
     dispatch({
       type: GET_INFLUENCERS,
@@ -87,7 +79,9 @@ export const getInfluencers = () => async (dispatch) => {
 // Get influencers
 export const getAinfluencers = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/influencers/${id}`);
+    const res = await axios.get(
+      baseUrl ? ` ${baseUrl}/api/influencers/${id}` : `/api/influencers/${id}`
+    );
 
     dispatch({
       type: GET_INFLUENCER,
@@ -111,10 +105,18 @@ export const setRemoveActiveSidebar = () => (dispatch) => {
   });
 };
 
+export const closeFormSubmissionSuccessModal = () => (dispatch) => {
+  dispatch({
+    type: INFLUENCER_FORM_SUBMISSION_MODAL_CLOSE,
+  });
+};
+
 // Load Admin
 export const loadAdmin = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/admin/auth`);
+    const res = await axios.get(
+      baseUrl ? ` ${baseUrl}/api/admin/auth` : `/api/admin/auth`
+    );
 
     dispatch({
       type: ADMIN_LOADED,
@@ -138,7 +140,11 @@ export const login = (username, password) => async (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   try {
-    const res = await axios.post(`/api/admin/auth`, body, config);
+    const res = await axios.post(
+      baseUrl ? ` ${baseUrl}/api/admin/auth` : `/api/admin/auth`,
+      body,
+      config
+    );
 
     dispatch({
       type: LOGIN_SUCCESS,

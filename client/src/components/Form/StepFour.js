@@ -36,7 +36,6 @@ const StepFour = ({ nextStep, prevStep, formData, setFormData }) => {
           errors,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            {console.log(values, errors)}
             <Form.Group>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
@@ -213,6 +212,7 @@ const StepFour = ({ nextStep, prevStep, formData, setFormData }) => {
                 <Button
                   variant="danger"
                   type="submit"
+                  name="back_button"
                   onClick={() => setDirection("back")}
                 >
                   Back

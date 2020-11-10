@@ -28,6 +28,7 @@ const initialState = {
   isAuthenticated: null,
   user: null,
   token: localStorage.getItem("token"),
+  influencerFormSubmissionModalOpen: false,
 };
 
 export default function (state = initialState, action) {
@@ -62,12 +63,21 @@ export default function (state = initialState, action) {
         influencers: [payload, ...state.influencers],
         loading: false,
         formStep: 1,
+        influencerFormSubmissionModalOpen: true,
       };
     case INFLUENCER_FORM_SUBMIT_FAIL:
       return {
         ...state,
         error: payload,
         loading: false,
+        influencerFormSubmissionModalOpen: false,
+      };
+    case INFLUENCER_FORM_SUBMIT_FAIL:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+        influencerFormSubmissionModalOpen: false,
       };
     case SET_ACTIVE_SIDE_BAR:
       return {
