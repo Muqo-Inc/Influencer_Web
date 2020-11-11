@@ -32,7 +32,6 @@ const StepOne = ({
     }),
   });
   function validateEmail(value) {
-    console.log(value);
     let error;
     verifyExistingEmail(value);
 
@@ -106,7 +105,6 @@ const StepOne = ({
                   isInvalid={!!errors.email && !!err}
                   validate={validateEmail}
                 />{" "}
-                {console.log(!!errors.email && !!err, !!errors.email, !!err)}
                 <Form.Control.Feedback type="invalid">
                   {errors.email}
                 </Form.Control.Feedback>

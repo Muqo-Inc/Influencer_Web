@@ -15,31 +15,23 @@ const StepSeven = ({ prevStep, formData, setFormData, handleFormSubmit }) => {
     canPromotePosts: yup.bool().required("This field  is Required"),
     shareRefCode: yup.bool().required("This field  is Required"),
   });
-  console.log(
-    "in sevem",
-    !!formData.canPromotePosts,
-    formData.canPromotePosts === null
-  );
 
-  // useEffect(() => {},[])
   return (
     <div>
       <Formik
         validationSchema={schema}
-        onSubmit={(values, actions) => {
+        onSubmit={(values, e) => {
           setFormData(values);
           if (direction === "back") {
             prevStep();
           }
-          handleFormSubmit();
         }}
         initialValues={formData}
       >
         {({ handleSubmit, handleChange, values, errors }) => (
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form noValidate onSubmit={(e) => handleFormSubmit(e)}>
             <Form.Group>
               <Form.Row>
-                {console.log(errors, values)}
                 <Form.Group as={Col} controlId="formGridUsedApp">
                   <Form.Label>
                     Once accepted as a Verified influencer partner do you give

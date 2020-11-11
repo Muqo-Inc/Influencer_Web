@@ -60,7 +60,8 @@ const FormMain = ({
     influencerType: "",
   };
   const [influencer, setInfluencer] = useState(initialFormState);
-  const [showModal, setShowModal] = useState(influencerFormSubmissionModalOpen);
+  const [showModal, setShowModal] = useState(false);
+  console.log(influencerFormSubmissionModalOpen);
   // const handleOnChange = () => (e) => {
   //   if (e.target.type === "checkbox") {
   //     if (e.target.name === "favMusicGenre") {
@@ -103,19 +104,21 @@ const FormMain = ({
   //   });
   // };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("in submit funcion", influencer);
+
     submitInfluencerForm(influencer);
     handleModalOpen();
   };
 
   const handleModalClose = () => {
     closeFormSubmissionSuccessModal();
-    setShowModal(influencerFormSubmissionModalOpen);
+    setShowModal(false);
     history.push(`/`);
   };
   const handleModalOpen = () => {
-    setShowModal(influencerFormSubmissionModalOpen);
+    setShowModal(true);
   };
 
   return (
@@ -201,9 +204,9 @@ const FormMain = ({
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title>Thanks for Submitting the Influencer Form</Modal.Title>
+            <Modal.Title>Muqo</Modal.Title>
           </Modal.Header>
-          <Modal.Body></Modal.Body>
+          <Modal.Body>Thanks for Submitting the Influencer Form</Modal.Body>
           <Modal.Footer>
             <Button variant="success" onClick={handleModalClose}>
               OK
@@ -230,4 +233,5 @@ export default connect(mapStateToProps, {
   submitInfluencerForm,
   nextStep,
   prevStep,
+  closeFormSubmissionSuccessModal,
 })(withRouter(FormMain));

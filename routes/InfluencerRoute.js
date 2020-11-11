@@ -63,7 +63,7 @@ router.post("/influencer", async (req, res) => {
     shareRefCode,
   } = req.body;
 
-  console.log(req.body);
+  console.log(req.body, "hbh");
   try {
     const influencer = new Influencer(req.body);
 
@@ -124,7 +124,6 @@ router.get("/emails", async (req, res) => {
   const { email } = req.query;
   try {
     let influencer = await Influencer.findOne({ email });
-    console.log("influe", influencer);
     if (influencer) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
