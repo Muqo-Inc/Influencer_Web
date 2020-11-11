@@ -18,6 +18,7 @@ import {
   CLEAR_PROFILE,
   GET_INFLUENCER_ERROR,
   CLEAR_ERROR,
+  INFLUENCER_FORM_SUBMISSION_MODAL_CLOSE,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -80,6 +81,7 @@ export default function (state = initialState, action) {
         formStep: 1,
         influencerFormSubmissionModalOpen: true,
       };
+
     case INFLUENCER_FORM_SUBMIT_FAIL:
       return {
         ...state,
@@ -87,11 +89,9 @@ export default function (state = initialState, action) {
         loading: false,
         influencerFormSubmissionModalOpen: false,
       };
-    case INFLUENCER_FORM_SUBMIT_FAIL:
+    case INFLUENCER_FORM_SUBMISSION_MODAL_CLOSE:
       return {
         ...state,
-        error: payload,
-        loading: false,
         influencerFormSubmissionModalOpen: false,
       };
     case SET_ACTIVE_SIDE_BAR:

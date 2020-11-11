@@ -18,6 +18,7 @@ import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
+import FormConfirm from "./Confirm";
 
 const FormMain = ({
   submitInfluencerForm,
@@ -60,8 +61,8 @@ const FormMain = ({
     influencerType: "",
   };
   const [influencer, setInfluencer] = useState(initialFormState);
-  const [showModal, setShowModal] = useState(false);
-  console.log(influencerFormSubmissionModalOpen);
+  const [showModal, setShowModal] = useState(influencerFormSubmissionModalOpen);
+
   // const handleOnChange = () => (e) => {
   //   if (e.target.type === "checkbox") {
   //     if (e.target.name === "favMusicGenre") {
@@ -103,10 +104,10 @@ const FormMain = ({
   //     influencerType: location.state.mainType,
   //   });
   // };
+  console.log("in submit funcion", influencerFormSubmissionModalOpen);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("in submit funcion", influencer);
+  const handleSubmit = () => {
+    // e.preventDefault();
 
     submitInfluencerForm(influencer);
     handleModalOpen();
@@ -114,11 +115,11 @@ const FormMain = ({
 
   const handleModalClose = () => {
     closeFormSubmissionSuccessModal();
-    setShowModal(false);
+    setShowModal(influencerFormSubmissionModalOpen);
     history.push(`/`);
   };
   const handleModalOpen = () => {
-    setShowModal(true);
+    setShowModal(influencerFormSubmissionModalOpen);
   };
 
   return (
@@ -185,6 +186,15 @@ const FormMain = ({
                 prevStep={prevStep}
                 formData={influencer}
                 setFormData={setInfluencer}
+              />
+            );
+          case 8:
+            return (
+              <FormConfirm
+                nextStep={nextStep}
+                prevStep={prevStep}
+                formData={influencer}
+                setFormData={setInfluencer}
                 handleFormSubmit={handleSubmit}
               />
             );
@@ -198,7 +208,7 @@ const FormMain = ({
 
       <>
         <Modal
-          show={showModal}
+          show={influencerFormSubmissionModalOpen}
           onHide={handleModalClose}
           aria-labelledby="contained-modal-title-vcenter"
           centered

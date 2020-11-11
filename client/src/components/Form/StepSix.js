@@ -6,15 +6,17 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as yup from "yup";
 import { Formik, Field } from "formik";
-const StepSix = ({ nextStep, prevStep, location }) => {
+const StepSix = ({ nextStep, prevStep, location, formData, setFormData }) => {
   const [direction, setDirection] = useState("back");
   return (
     <div>
       {" "}
       <Formik
-      // onSubmit={() => {
-      //   direction === "back" ? prevStep() : nextStep();
-      // }}
+        onSubmit={(values) => {
+          direction === "back" ? prevStep() : nextStep();
+          setFormData(values);
+        }}
+        initialValues={formData}
       >
         {({ handleSubmit }) => (
           <Form noValidate onSubmit={handleSubmit}>
@@ -98,7 +100,7 @@ const StepSix = ({ nextStep, prevStep, location }) => {
                   variant="danger"
                   type="submit"
                   name="back_button"
-                  onClick={() => prevStep()}
+                  onClick={() => setDirection("back")}
                 >
                   Back
                 </Button>
@@ -107,7 +109,7 @@ const StepSix = ({ nextStep, prevStep, location }) => {
                 <Button
                   variant="primary"
                   type="submit"
-                  onClick={() => nextStep()}
+                  onClick={() => setDirection("forward")}
                 >
                   Continue
                 </Button>

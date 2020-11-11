@@ -7,6 +7,7 @@ const Influencer = require("../models/InfluencerModel");
 const paginatedResults = require("../middleware/paginatedResults");
 const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
+const myLogger = require("../middleware/temp");
 
 // Get all Influencer
 router.get(
@@ -63,7 +64,6 @@ router.post("/influencer", async (req, res) => {
     shareRefCode,
   } = req.body;
 
-  console.log(req.body, "hbh");
   try {
     const influencer = new Influencer(req.body);
 
@@ -77,6 +77,7 @@ router.post("/influencer", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+    res.send(err);
   }
 });
 
@@ -127,7 +128,7 @@ router.get("/emails", async (req, res) => {
     if (influencer) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
-    return res.status(200);
+    return res.status(200).json({ status: "succes" });
   } catch (err) {
     console.log(err.message);
 

@@ -18,7 +18,7 @@ const InfluencerSchema = new Schema({
     type: String,
     trim: true,
     lowercase: true,
-    unique: true,
+    unique: false,
   },
   age: {
     type: Number,
