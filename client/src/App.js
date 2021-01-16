@@ -13,6 +13,7 @@ import AdminApp from "./components/AdminApp/AdminApp";
 
 import { loadAdmin } from "./redux/actions/influencersActions";
 import setAuthToken from "./utils/setAuthToken";
+import BetaPage from "./components/layouts/LandingPage/BetaPage";
 
 function App() {
   const [isLoading, setLoading] = useState(true);
@@ -47,7 +48,7 @@ function App() {
           <Fragment>
             <NavBar />
             <Switch>
-              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/" component={BetaPage} />
               <Route component={Routes} />
             </Switch>
             {/* <Footer /> */}
