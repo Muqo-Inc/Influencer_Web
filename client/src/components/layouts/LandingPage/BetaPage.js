@@ -1,18 +1,37 @@
-import React from "react";
-import {
-  Button,
-  Image,
-  Container,
-  Row,
-  Col,
-  Form,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import axios from "axios";
+
+import { Button, Image, Form } from "react-bootstrap";
 
 import "./landing-page.css";
 import muqoIcon from "../../../resources/images/muqo.svg";
 const BetaPage = () => {
+  let inititalBetaUser = { name: "", username: "", email: "" };
+  const [betaUser, setBetaUser] = useState(inititalBetaUser);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setBetaUser({ ...betaUser, [name]: value });
+  };
+  const handleRecordSubmission = (event) => {
+    event.preventDefault();
+    submitBetaUserForm(betaUser);
+    setBetaUser(inititalBetaUser);
+  };
+
+  const submitBetaUserForm = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(`/api/beta-user`, formData, config);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className="centered ">
@@ -25,7 +44,7 @@ const BetaPage = () => {
           You can reserve your username and join our waitlist by entering your
           name and email below.
         </h5>
-        <Form inline>
+        <Form inline onSubmit={handleRecordSubmission}>
           <Form.Label htmlFor="inlineFormInputName2" srOnly>
             Name
           </Form.Label>
@@ -34,6 +53,10 @@ const BetaPage = () => {
             id="inlineFormInputName2"
             placeholder="Your Name"
             type="text"
+            name="name"
+            value={betaUser.name}
+            onChange={handleOnChange}
+            required
           />{" "}
           <Form.Label htmlFor="inlineFormInputName2" srOnly>
             Username
@@ -43,6 +66,10 @@ const BetaPage = () => {
             id="inlineFormInputName2"
             placeholder="Username"
             type="text"
+            name="username"
+            value={betaUser.username}
+            onChange={handleOnChange}
+            required
           />{" "}
           <Form.Label htmlFor="inlineFormInputName2" srOnly>
             E-Mail{" "}
@@ -52,6 +79,10 @@ const BetaPage = () => {
             id="inlineFormInputName2"
             placeholder="E-Mail"
             type="email"
+            name="email"
+            value={betaUser.email}
+            onChange={handleOnChange}
+            required
           />
           <Button type="submit" className="mb-2">
             Submit

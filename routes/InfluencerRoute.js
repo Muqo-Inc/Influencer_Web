@@ -8,6 +8,7 @@ const paginatedResults = require("../middleware/paginatedResults");
 const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 const myLogger = require("../middleware/temp");
+const BetaUserModel = require("../models/BetaUserModel");
 
 // Get all Influencer
 router.get(
@@ -164,7 +165,7 @@ function sortCategoriesForInsert(categories) {
     }
   });
 
-  //mapping through empty arrays and passing to 
+  //mapping through empty arrays and passing to
   parents.map((parent) => {
     AssignChild(categories, parent, parents);
   });
@@ -184,4 +185,27 @@ var AssignChild = function (categories, parent, parents) {
     AssignChild(categories, item, parents);
   });
 };
+
+//beta user saving route
+
+router.post("/beta-user", async (req, res) => {
+  const { name, username, email } = req.body;
+
+  try {
+    const betaUser = new BetaUserModel(req.body);
+    console.log(betaUser);
+    const result = await betaUser.save();
+
+    res.status(201).json({
+      status: "succes",
+      data: {
+        influencer: result,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
 module.exports = router;
