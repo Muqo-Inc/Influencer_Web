@@ -135,4 +135,53 @@ router.get("/emails", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+//assignments
+router.post("/assign", async (req, res) => {
+  const inputJson = req.body;
+  try {
+    var outPutJson = sortCategoriesForInsert(inputJson);
+    res.status(201).json({
+      status: "succes",
+      data: {
+        outPutJson,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).send("Server error");
+  }
+});
+
+function sortCategoriesForInsert(categories) {
+  let parents = [];
+  //trying to find the values with a  null aprent id
+  categories.find(function (category) {
+    if (category.parent_id === null) {
+      //pushing values with null to empty array
+      parents.push(category);
+    }
+  });
+
+  //mapping through empty arrays and passing to 
+  parents.map((parent) => {
+    AssignChild(categories, parent, parents);
+  });
+
+  return parents;
+}
+var AssignChild = function (categories, parent, parents) {
+  let child = [];
+  categories.find(function (category) {
+    if (parent.id === category.parent_id) {
+      child.push(category);
+      parents.push(category);
+    }
+  });
+
+  child.map((item) => {
+    AssignChild(categories, item, parents);
+  });
+};
 module.exports = router;
