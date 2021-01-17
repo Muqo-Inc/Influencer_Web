@@ -51,7 +51,13 @@ const BetaPage = () => {
               <Form
                 inline
                 onSubmit={handleRecordSubmission}
-                style={{ padding: "5px" }}
+                style={{
+                  padding: "5px",
+                  textAlign: "center",
+                  alignItems: "center",
+                  margin: "auto",
+                  width: "70% ",
+                }}
               >
                 <Form.Label htmlFor="inlineFormInputName2" srOnly>
                   Name
