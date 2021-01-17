@@ -42,7 +42,6 @@ const BetaPage = () => {
               <h5 style={{ padding: "5px", textAlign: "center" }}>
                 Hey, Mq Music is currently an invite only private beta app but
                 our team is working hard to make it open to everyone very soon!
-                and you can reserve your name now
               </h5>
               <h6 style={{ padding: "5px" }}>
                 You can reserve your username and join our waitlist by entering
