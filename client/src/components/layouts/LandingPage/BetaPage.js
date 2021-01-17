@@ -38,7 +38,7 @@ const BetaPage = () => {
         <Row className="justify-content-md-center">
           <Col>
             <div>
-              <Image src={muqoIcon} className="beta-page-icon" />
+              {/* <Image src={muqoIcon} className="beta-page-icon" /> */}
               <h5>
                 Hey, Mq Music is currently an invite only private beta app but
                 our team is working hard to make it open to everyone very soon!
