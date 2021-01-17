@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button, Image, Form, Container, Row, Col } from "react-bootstrap";
 
 import "./landing-page.css";
-import muqoIcon from "../../../resources/images/muqo.svg";
+import muqoIcon from "../../../resources/images/mq.svg";
 const BetaPage = () => {
   let inititalBetaUser = { name: "", username: "", email: "" };
   const [betaUser, setBetaUser] = useState(inititalBetaUser);
@@ -38,7 +38,7 @@ const BetaPage = () => {
         <Row className="justify-content-md-center">
           <Col>
             <div>
-              {/* <Image src={muqoIcon} className="beta-page-icon" /> */}
+              <Image src={muqoIcon} className="beta-page-icon" />
               <h5>
                 Hey, Mq Music is currently an invite only private beta app but
                 our team is working hard to make it open to everyone very soon!

@@ -12,8 +12,8 @@ export const NavBar = () => {
         <Navbar.Brand to="/" as={Link}>
           <Image src={MuqoIcon} className="navbar-brand-img" fluid />
         </Navbar.Brand>
-        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-        {/* <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto"></Nav>
           <Nav className="justify-content-end ">
             <Navbar.Brand href="#home">
@@ -35,7 +35,7 @@ export const NavBar = () => {
               />
             </Navbar.Brand>
           </Nav>
-        </Navbar.Collapse> */}
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );
