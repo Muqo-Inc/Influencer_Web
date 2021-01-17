@@ -193,7 +193,6 @@ router.post("/beta-user", async (req, res) => {
 
   try {
     const betaUser = new BetaUserModel(req.body);
-    console.log(betaUser);
     const result = await betaUser.save();
 
     res.status(201).json({
@@ -207,5 +206,20 @@ router.post("/beta-user", async (req, res) => {
     res.send(err);
   }
 });
+
+router.get(
+  "/beta-user",
+  auth,
+  paginatedResults(BetaUserModel),
+  async (req, res) => {
+    try {
+      const influencers = await BetaUserModel.find().sort({ date: -1 });
+      res.json(influencers);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 module.exports = router;

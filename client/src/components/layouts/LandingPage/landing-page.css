@@ -64,7 +64,8 @@ body {
 }
 
 /* mobile styles */
-@media (max-width: 600px) {
+
+@media only screen and (min-width: 1922px) {
   .caption {
     position: absolute;
     top: 20%;
@@ -74,19 +75,37 @@ body {
     width: 200px;
     height: 100px;
   }
+  .beta-page-icon{
+    height: 2px;
+    width: 4%;
+  }
+  .centered {
+    width: 60%;
+    height: auto;
+    /* Center vertically and horizontally */
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
+  
+  }
+
 }
 
 /* 
 Beta Page Styles */
 
 .beta-page-icon{
-  height: 100px;
-  width: 100%;
+  height: 70px;
+  width: 70%;
 }
 .centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -45%);
+  width: 60%;
+  height: auto;
+  /* Center vertically and horizontally */
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
+
 }

@@ -20,4 +20,4 @@ const BetaUserSchema = new Schema({
 
 //supporting functions
 
-module.exports = mongoose.model("BetaUser", BetaUserSchema);
+module.exports = mongoose.model("BetaUserModel", BetaUserSchema);
