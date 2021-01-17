@@ -46,7 +46,7 @@ function App() {
       <Router>
         {appType === "MainApp" ? (
           <Fragment>
-            {/* <NavBar /> */}
+            <NavBar />
             <Switch>
               <Route exact path="/" component={BetaPage} />
               <Route component={Routes} />
