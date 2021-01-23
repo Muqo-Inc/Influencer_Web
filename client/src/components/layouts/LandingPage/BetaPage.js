@@ -101,7 +101,15 @@ const BetaPage = () => {
                   Submit
                 </Button>
               </Form>
-              <p>Welcome to the music movement.</p>
+              <p
+                style={{
+                  fontSize: " 90%",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                Welcome to the music movement.
+              </p>
             </div>
           </Col>
         </Row>
