@@ -101,7 +101,9 @@ const BetaPage = () => {
                   Submit
                 </Button>
               </Form>
-              <h6>We look forward to having you join the music movement.</h6>
+              <p style={{ fontSize: " 75%" }}>
+                We look forward to having you join the music movement.
+              </p>
             </div>
           </Col>
         </Row>

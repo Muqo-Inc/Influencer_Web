@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "../../DashBoard/dash-board.css";
 import { withRouter } from "react-router-dom";
+import BetaUserListPage from "./BetaUserListPage";
 
 const InfluencersListPage = ({
   getInfluencers,
@@ -69,5 +70,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getInfluencers })(
-  withRouter(InfluencersListPage)
+  withRouter(BetaUserListPage)
 );
